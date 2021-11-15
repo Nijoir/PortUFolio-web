@@ -38,6 +38,15 @@ export class AuthService {
     }
   }
 
+  async resetPassword(email:string){
+    try{
+      return await this.auth.sendPasswordResetEmail(email);
+    }catch (err){
+      console.log(err)
+      return null;
+    }
+  }
+
 
   logOut(){
     return this.auth.signOut()

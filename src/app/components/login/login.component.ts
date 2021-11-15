@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,24 +16,28 @@ export class LoginComponent implements OnInit {
 
   }
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  Ingresar() {
-    console.log(this.usuario);
-    const { email, password } = this.usuario;
-    this.auth.login(email, password).then(res => {
-      console.log("se ingreso: ", res);
-    })
+  async Ingresar() {
+    try{
+      console.log(this.usuario);
+      const { email, password } = this.usuario;
+      await this.auth.login(email, password).then(() => this.router.navigate(['dashboard']))
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  IngresarGoogle() {
-    const { email, password } = this.usuario;
-    this.auth.loginGoogle(email, password).then(res => {
-      console.log("se ingreso: ", res);
-    })
+  async IngresarGoogle() {
+    try{
+      const { email, password } = this.usuario;
+      await this.auth.loginGoogle(email, password).then(() => this.router.navigate(['dashboard']))
+    }catch (error) {
+      console.log(error);
+    }
   }
 
 }

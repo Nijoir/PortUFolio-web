@@ -6,14 +6,15 @@
         </div>
         <div class="card-body p-4">
             <label style="float:left">Email</label>
-            <input class="form-control m-2" type="email" placeholder="ingrese su email" [(ngModel)]="usuario.email">
+            <input class="form-control m-2" type="email" placeholder="Ingrese su email" [(ngModel)]="usuario.email">
 
             <label style="float:left">Password</label>
-            <input class="form-control m-2" type="password" placeholder="ingrese su password" [(ngModel)]="usuario.password">
+            <input class="form-control m-2" type="password" placeholder="Ingrese su password" [(ngModel)]="usuario.password">
 
             <button class="btn btn-primary btn-block m-2" (click)="Ingresar()">Ingresar</button>
             <button class="btn btn-info btn-block m-2" (click)="IngresarGoogle()">Ingresar con google</button>
-            <label> Aun no tienes cuenta? <a routerLink = "registro">Registrarse</a></label>
+            <label class="m-2"> Aun no tienes cuenta? <a routerLink = "registro">Registrarse</a></label>
+            <label class="m-2"> Olvido su contraseña? <a routerLink = "recuperar-pass">Recuperar</a></label>
         </div>
     </div>
 </div>

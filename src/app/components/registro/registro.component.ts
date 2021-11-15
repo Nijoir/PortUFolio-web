@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,21 +12,22 @@ export class RegistroComponent implements OnInit {
   usuario = {
 
     email: '',
-    password: ''
+    password: '',
 
   }
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  Registro() {
-    const { email, password } = this.usuario;
-    this.auth.register(email, password).then(res => {
-      console.log("se registro: ", res);
-    })
-
+ async Registro() {
+    try{
+      const { email, password } = this.usuario;
+      this.auth.register(email, password).then(() => this.router.navigate(['dashboard']));
+    }catch (error) {
+      console.log(error);
+    }
   }
 
 }
