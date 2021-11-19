@@ -12,15 +12,17 @@ import { FileUpload } from '../models/file-upload';
 })
 export class FileUploadService {
   
-  auth = getAuth();
-  user = this.auth.currentUser;
-  Uid = this.user?.uid;
-  private basePath = `/${this.Uid}`;
+  
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
 
   pushFileToStorage(fileUpload: FileUpload): Observable<number | undefined> {
-    const filePath = `${this.basePath}/${fileUpload.file.name}`;
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const Uid = user?.uid;
+    const basePath = `/${Uid}`;
+    
+    const filePath = `${basePath}/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 
@@ -38,11 +40,19 @@ export class FileUploadService {
   }
 
   private saveFileData(fileUpload: FileUpload): void {
-    this.db.list(this.basePath).push(fileUpload);
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const Uid = user?.uid;
+    const basePath = `/${Uid}`;
+    this.db.list(basePath).push(fileUpload);
   }
 
   getFiles(numberItems: number): AngularFireList<FileUpload> {
-    return this.db.list(this.basePath, ref =>
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const Uid = user?.uid;
+    const basePath = `/${Uid}`;
+    return this.db.list(basePath, ref =>
       ref.limitToLast(numberItems));
   }
 
@@ -55,11 +65,19 @@ export class FileUploadService {
   }
 
   private deleteFileDatabase(key: string): Promise<void> {
-    return this.db.list(this.basePath).remove(key);
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const Uid = user?.uid;
+    const basePath = `/${Uid}`;
+    return this.db.list(basePath).remove(key);
   }
 
   private deleteFileStorage(name: string): void {
-    const storageRef = this.storage.ref(this.basePath);
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const Uid = user?.uid;
+    const basePath = `/${Uid}`;
+    const storageRef = this.storage.ref(basePath);
     storageRef.child(name).delete();
   }
 }

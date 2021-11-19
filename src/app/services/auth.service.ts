@@ -23,8 +23,8 @@ export class AuthService {
   async login(email:string, password:string){
     try{
       return await this.auth.signInWithEmailAndPassword(email, password);
-    }catch (err){
-      console.log("error en login: ", err)
+    }catch (error){
+      window.alert("Error en login con usuario y contraseña")
       return null;
     }
   }
@@ -33,7 +33,7 @@ export class AuthService {
     try{
       return await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }catch (err){
-      console.log("error en login con google: ", err)
+      window.alert("Error en login con Google")
       return null;
     }
   }
@@ -45,11 +45,6 @@ export class AuthService {
       console.log(err)
       return null;
     }
-  }
-
-
-  logOut(){
-    return this.auth.signOut()
   }
 
 }

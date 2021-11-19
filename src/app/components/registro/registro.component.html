@@ -8,8 +8,11 @@
             <label style="float:left">Email</label>
             <input class="form-control m-2" type="email" placeholder="ingrese su email" [(ngModel)]="usuario.email">
 
-            <label style="float:left">Password</label>
-            <input class="form-control m-2" type="password" placeholder="ingrese su password" [(ngModel)]="usuario.password">
+            <label style="float:left">Contraseña</label>
+            <input class="form-control m-2" type="password" placeholder="ingrese su contraseña" [(ngModel)]="usuario.password">
+
+            <label style="float:left">Repita Contraseña</label>
+            <input class="form-control m-2" placeholder= "ingrese su contraseña">
 
             <button class="btn btn-primary btn-block m-2" (click)="Registro()">Registrar</button>
         </div>
