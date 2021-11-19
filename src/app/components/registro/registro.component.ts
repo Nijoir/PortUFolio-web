@@ -13,8 +13,9 @@ export class RegistroComponent implements OnInit {
 
     email: '',
     password: '',
-
+    password2: '',
   }
+  
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -24,7 +25,7 @@ export class RegistroComponent implements OnInit {
  async Registro() {
     try{
       const { email, password } = this.usuario;
-      this.auth.register(email, password).then(() => this.router.navigate(['dashboard']));
+      this.auth.register(email, password).then(() => this.router.navigate(['']));
     }catch (error) {
       console.log(error);
     }

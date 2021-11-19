@@ -12,9 +12,16 @@
             <input class="form-control m-2" type="password" placeholder="ingrese su contraseña" [(ngModel)]="usuario.password">
 
             <label style="float:left">Repita Contraseña</label>
-            <input class="form-control m-2" placeholder= "ingrese su contraseña">
-
-            <button class="btn btn-primary btn-block m-2" (click)="Registro()">Registrar</button>
+            <input class="form-control m-2" type="password" placeholder= "ingrese su contraseña "[(ngModel)]="usuario.password2">
+            <div *ngIf="usuario.password == usuario.password2">    
+                <button class="btn btn-primary btn-block m-2" (click)="Registro()">Registrar</button>
+            </div>
         </div>
     </div>
 </div>
+
+<footer>
+    <div class="footer-bottom">
+        <p>Copyright &copy;2021 PortUFolio. Diseñado por Nicolas Cayo & Robinson Orellana</p>
+    </div>
+</footer>

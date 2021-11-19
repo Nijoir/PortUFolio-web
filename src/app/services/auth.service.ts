@@ -14,7 +14,9 @@ export class AuthService {
 
   async register(email:string, password:string){
     try{
-      return await this.auth.createUserWithEmailAndPassword(email, password);
+      return await this.auth.createUserWithEmailAndPassword(email, password).then((result) => {
+        result.user?.sendEmailVerification();
+      });
     }catch (err){
       console.log("error en registro: ", err)
       return null;

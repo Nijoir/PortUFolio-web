@@ -203,3 +203,17 @@ a.article:hover {
       margin-left: 250px!important;
     }
   }
+
+  .footer-bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: #fff;
+    
+}
+
+.footer{
+  position: relative;
+  top: 1000px;
+}
