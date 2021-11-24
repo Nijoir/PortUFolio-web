@@ -27,7 +27,7 @@ export class RegistroComponent implements OnInit {
     try{
       const { email, password } = this.usuario;
       this.auth.register(email, password).then(() => this.afAuth.signOut());
-      this.router.navigate(['']);
+      await this.router.navigate(['']);
     }catch (error) {
       console.log(error);
     }

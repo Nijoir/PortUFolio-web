@@ -16,7 +16,12 @@ export class AuthService {
   async register(email:string, password:string){
     try{
       return await this.aFauth.createUserWithEmailAndPassword(email, password).then((result) => {
-        result.user?.sendEmailVerification();
+        if (result.user?.emailVerified !== true) {
+          result.user?.sendEmailVerification();
+        }
+        else {
+          window.alert('Este mail ya se encuentra en uso')
+        }
       });
 
     }catch (err){
