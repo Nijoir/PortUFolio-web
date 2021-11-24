@@ -13,7 +13,7 @@
 
             <label style="float:left">Repita Contraseña</label>
             <input class="form-control m-2" type="password" placeholder= "ingrese su contraseña "[(ngModel)]="usuario.password2">
-            <div *ngIf="usuario.password == usuario.password2">    
+            <div *ngIf="(usuario.password == usuario.password2)&&(usuario.password != '')">    
                 <button class="btn btn-primary btn-block m-2" (click)="Registro()">Registrar</button>
             </div>
         </div>

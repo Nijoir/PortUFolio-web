@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-registro',
@@ -17,7 +18,7 @@ export class RegistroComponent implements OnInit {
   }
   
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +26,8 @@ export class RegistroComponent implements OnInit {
  async Registro() {
     try{
       const { email, password } = this.usuario;
-      this.auth.register(email, password).then(() => this.router.navigate(['']));
+      this.auth.register(email, password).then(() => this.afAuth.signOut());
+      this.router.navigate(['']);
     }catch (error) {
       console.log(error);
     }

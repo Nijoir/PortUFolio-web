@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from '@firebase/app-compat';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth:AngularFireAuth) {
-    auth.authState.subscribe(user=>{
+  constructor(private aFauth:AngularFireAuth, private router: Router) {
+    aFauth.authState.subscribe(user=>{
       console.log(user)})
    }
 
   async register(email:string, password:string){
     try{
-      return await this.auth.createUserWithEmailAndPassword(email, password).then((result) => {
+      return await this.aFauth.createUserWithEmailAndPassword(email, password).then((result) => {
         result.user?.sendEmailVerification();
       });
+
     }catch (err){
       console.log("error en registro: ", err)
       return null;
@@ -24,7 +26,14 @@ export class AuthService {
   }
   async login(email:string, password:string){
     try{
-      return await this.auth.signInWithEmailAndPassword(email, password);
+      return await this.aFauth.signInWithEmailAndPassword(email, password).then((result) =>{
+        if (result.user?.emailVerified !== true) {
+          window.alert('Usuario No Verificado')
+        }
+        else {
+          this.router.navigate(['dashboard'])
+        }
+      });
     }catch (error){
       window.alert("Error en login con usuario y contraseña")
       return null;
@@ -33,7 +42,7 @@ export class AuthService {
 
   async loginGoogle(email:string, password:string){
     try{
-      return await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      return await this.aFauth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }catch (err){
       window.alert("Error en login con Google")
       return null;
@@ -42,7 +51,7 @@ export class AuthService {
 
   async resetPassword(email:string){
     try{
-      return await this.auth.sendPasswordResetEmail(email);
+      return await this.aFauth.sendPasswordResetEmail(email);
     }catch (err){
       console.log(err)
       return null;

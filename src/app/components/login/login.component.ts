@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     try{
       console.log(this.usuario);
       const { email, password } = this.usuario;
-      await this.auth.login(email, password).then(() => this.router.navigate(['dashboard']))
+      await this.auth.login(email, password);
     } catch (error) {
       console.log(error);
     }

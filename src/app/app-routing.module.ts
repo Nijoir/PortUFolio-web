@@ -24,8 +24,6 @@ const routes: Routes = [
   },
   { path: 'registro', 
     component: RegistroComponent, 
-    canActivate:[AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToDashboard }, 
 },
   { path: 'recuperar-pass', component: ForgotPasswordComponent},
 ];
