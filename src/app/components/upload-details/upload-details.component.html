@@ -1,0 +1,24 @@
+<a href="{{ fileUpload.url }}">{{ fileUpload.name }}</a>
+<button (click)="deleteFileUpload(fileUpload)"
+  class="btn btn-danger m-1" style="float: right"><i class="fa fa-trash" aria-hidden="true"></i>
+</button>
+
+<button type="button" class="btn btn-secondary m-1" style="float: right" (click)="open(content)"> <i class="fa fa-qrcode" aria-hidden="true"></i></button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ fileUpload.name }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="file">
+      <qr-code [value]= fileUpload.url [size]="300"></qr-code>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="copyText()">Copiar Url</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+  </div>
+</ng-template>

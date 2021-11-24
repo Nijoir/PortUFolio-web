@@ -1,0 +1,13 @@
+.file{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-title{
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

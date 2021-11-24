@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <b>Login</b>
+        </div>
+        <div class="card-body p-4">
+            <label style="float:left">Email</label>
+            <input class="form-control m-2" type="email" placeholder="Ingrese su email" [(ngModel)]="usuario.email">
+
+            <label style="float:left">Password</label>
+            <input class="form-control m-2" type="password" placeholder="Ingrese su password" [(ngModel)]="usuario.password">
+
+            <button class="btn btn-primary btn-block m-2" (click)="Ingresar()">Ingresar</button>
+            <button class="btn btn-info btn-block m-2" (click)="IngresarGoogle()">Ingresar con google</button>
+            <label class="m-2"> Aun no tienes cuenta? <a routerLink = "registro">Registrarse</a></label>
+            <label class="m-2"> Olvido su contraseña? <a routerLink = "recuperar-pass">Recuperar</a></label>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-bottom">
+        <p>Copyright &copy;2021 PortUFolio. Diseñado por Nicolas Cayo & Robinson Orellana</p>
+    </div>
+</footer>

@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <b>Registro</b>
+        </div>
+        <div class="card-body p-4">
+            <label style="float:left">Email</label>
+            <input class="form-control m-2" type="email" placeholder="ingrese su email" [(ngModel)]="usuario.email">
+
+            <label style="float:left">Contraseña</label>
+            <input class="form-control m-2" type="password" placeholder="ingrese su contraseña" [(ngModel)]="usuario.password">
+
+            <label style="float:left">Repita Contraseña</label>
+            <input class="form-control m-2" type="password" placeholder= "ingrese su contraseña "[(ngModel)]="usuario.password2">
+            <div *ngIF="(usuario.password != usuario.password2)&&(usuario.password != '')&&(usuario.password2 != '')">
+                <span>La contraseña no es identica</span>
+            </div>
+            <div *ngIf="(usuario.password == usuario.password2)&&(usuario.password != '')">    
+                <button class="btn btn-primary btn-block m-2" (click)="Registro()">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-bottom">
+        <p>Copyright &copy;2021 PortUFolio. Diseñado por Nicolas Cayo & Robinson Orellana</p>
+    </div>
+</footer>
